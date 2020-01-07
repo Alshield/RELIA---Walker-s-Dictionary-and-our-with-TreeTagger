@@ -1,0 +1,117 @@
+% arara: pdflatex: { shell: yes }
+% arara: bibtex
+% arara: pdflatex
+% arara: pdflatex: { synctex: on}
+% arara: clean: {files: [.aux, .idx, .ilg, .ind, .log, .bbl, .bcf, .ist, .blg, .run.xml]}
+
+% sample.tex
+% 
+% A sample UMBCposter.
+%
+% Rouben Rostamian, February 2010
+
+\documentclass[paper=a0paper, dvipsnames, fontmag=0.65]{umbcposter}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{colortbl}
+\usepackage{tipa}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{mdwlist}
+\usepackage{amsmath,amsthm,amssymb,bm}
+\usepackage{tikz}
+\usetikzlibrary{spy,arrows.meta,shapes.geometric,arrows,fit ,plotmarks ,shapes.arrows,decorations.pathmorphing ,matrix,chains,scopes,positioning ,fadings ,patterns ,shapes,snakes,decorations.pathreplacing}
+\tikzfading[name=fade out, inner color=transparent!0, outer color=transparent!100]
+
+\usepackage[latin1]{inputenc}
+
+\renewcommand{\rmdefault}{pag}
+
+% Turn off indenting
+\setlength{\parindent}{0in}
+
+\let\Textsize\tiny
+\def\Head#1{\noindent{\Large #1}}
+\def\LHead#1{\noindent{\Large  #1}}
+\def\Subhead#1{\noindent{\large #1}}
+\def\Title#1{\noindent{\VeryHuge #1}}
+
+\newcommand{\Line}{\hrulefill\par}
+\newcommand{\Space}{\vspace{0.1cm}}
+
+\newcommand{\myvec}[1]{\pmb{#1}}
+\newcommand{\mleEst}{\hat{\Theta}_{\textrm{MLE}}}
+\newcommand{\est}{\hat{\Theta}}
+\newcommand{\fn}[2]{#1 \left( #2 \right)}
+\newcommand{\samplespace}{\mathbb{S}}
+\newcommand{\argmax}{\arg\max}
+\newcommand{\definedas}{:=}
+
+
+\begin{document}
+
+\newcommand{\mytitle}{
+\begin{minipage}[t]{0.5\linewidth}
+		\huge Comparing John Walker's 18th century grammatical categories against those of today with Treetagger 
+\end{minipage}
+\hspace{0.1cm}
+\begin{minipage}[t]{0.4\linewidth}
+	\large Francois HUANG\\
+	\large Blanche MIRET\\
+	\large Preethi SRINIVASAN\\
+	\large Dao THAUVIN\\
+	\large Univ Paris Diderot \--- Sorbonne Paris Cit\'{e}\\ 
+\end{minipage}
+}
+
+\posterinit{
+	%grid,
+	columns = {2},
+	title align = {left},
+	background style = {left color = white!90!gray, right color = white},
+	title = \mytitle,
+	left logo = {},
+	right logo = {\includegraphics[height=0.55\headheight]{Logo_Universite.png}},
+	box/border style = {draw = black},
+    box/header font = {\Large\bf},
+	box/header font color = {black},
+	box/header style = {top color = white!50!gray,
+	bottom color = white!50!gray, line width=1pt},
+	box/body style = {bottom color = white!80!gray, top color = white!90!gray},
+	box/all rounded,
+}
+
+\boxit{col = 0, at top, name = introduction}{Introduction}{
+  \input{introduction.tex}
+}
+\boxit{col = 0, below of=introduction, name = corpus}{Data}{
+  \input{datas.tex}
+}
+
+\boxit{col = 0,span=1, below of = corpus, name = workflow}{First Steps}{
+  \input{firstSteps.tex}
+}
+\boxit{col = 0,span=1, below of = workflow, name = remarks}{Remarks on Walker's Dictionary}{
+  \input{remarks.tex}
+}
+\boxit{col = 0,span=1, below of = remarks, name = experience}{Experiment}{
+  \input{experience.tex}
+}
+\boxit{col = 1,span=1, at top, name = preparingTT}{Preparing TreeTagger}{
+  \input{preparingTT.tex}
+}
+\boxit{col = 1,span=1, below of = preparingTT, name = results}{Results}{
+  \input{results.tex}
+}
+\boxit{col = 1,span=1, below of = results, name = discuss}{Discussion about the results}{
+  \input{discuss.tex}
+}
+\boxit{col = 1,span=1, below of = discuss, name = references}{References}{
+  \input{thebib.tex}
+}
+
+
+
+\end{document}
+
